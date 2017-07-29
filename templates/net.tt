@@ -1,0 +1,14 @@
+
+[% FOREACH iface IN interfaces -%]
+[%-  FOREACH directive IN iface -%]
+[%-    SWITCH directive.key %]
+[%-      CASE 'name' -%]
+[%- # do not interpret name directive -%]
+[%-      CASE 'needs' -%]
+[%- # the 'needs' directive has special variable name format -%]
+rc_net_[% iface.name %]_need="[% directive.value %]"
+[%-      CASE  -%]
+[% directive.key %]_[% iface.name %]="[% directive.value %]"
+[%     END %]
+[%-  END -%]
+[% END %]
