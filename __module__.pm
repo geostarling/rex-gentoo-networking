@@ -13,7 +13,6 @@ task 'setup', sub {
 };
 
 task 'setup_interfaces', sub {
-  $DB::single = 1;
   my $interfaces = param_lookup "interfaces", [];
   file "/etc/conf.d/net",
     content => template("templates/net.tt", interfaces => $interfaces);
